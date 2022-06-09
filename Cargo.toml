@@ -1,0 +1,13 @@
+[package]
+name = "compressonator-sys"
+version = "0.1.0"
+authors = ["Gregory Mitrano <gregory.mitrano@gmail.com>"]
+edition = "2021"
+links = "cmp_core"
+
+[features]
+gen-bindings = ["bindgen"]
+
+[build-dependencies]
+bindgen = { version = "0.59", optional = true }
+cmake = "0.1"
