@@ -1,4 +1,6 @@
 use std::env;
+
+#[cfg(not(feature = "gen-bindings"))]
 use std::fs;
 
 pub const BINDINGS_FILE_NAME: &str = "bindings.rs";
@@ -70,8 +72,12 @@ fn main() {
         .generator("Ninja")
         .build();
 
-    println!("cargo:rustc-link-search=native={}/build/lib", cmake_dir.display());
-    println!("cargo:rustc-link-lib=static=cmp_core");
+    println!(
+        "cargo:rustc-link-search=native={}/build/lib",
+        cmake_dir.display()
+    );
+
+    println!("cargo:rustc-link-lib=static=CMP_Core");
 
     // Generate the Rust bindings
     process_bindings(lib_path, &out_path);
