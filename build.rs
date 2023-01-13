@@ -67,7 +67,9 @@ fn main() {
     let out_path = env::var("OUT_DIR").unwrap();
 
     // Run CMake
+    // NOTE: We always build in Release mode to avoid MSVC runtime compatibility issues
     let cmake_dir = cmake::Config::new("vendor")
+        .profile("Release")
         .define("OPTION_ENABLE_ALL_APPS", "OFF")
         .generator("Ninja")
         .build();
